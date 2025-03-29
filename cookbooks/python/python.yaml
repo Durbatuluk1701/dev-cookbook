@@ -69,6 +69,14 @@ recipes:
     code: |
       import math
       print("Square root of 16 is", math.sqrt(16))
+  - name: "Executing Shell Commands"
+    description: "Run a shell command using subprocess."
+    code_language: "python"
+    code: |
+      import subprocess
+      result = subprocess.run(["echo", "Hello, World!"], capture_output=True, text=True)
+      print("Command output:", result.stdout.strip())
+      result2 = subprocess.run("<arbitrary shell command>", shell=True)
   - name: "Virtual Environment Setup"
     description: "Set up a Python virtual environment on Ubuntu 24.04 using the built-in venv module."
     code_language: "bash"

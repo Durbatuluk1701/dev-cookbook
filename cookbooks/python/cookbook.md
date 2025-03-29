@@ -35,6 +35,7 @@ Python projects are commonly managed with setuptools, pip, or poetry for packagi
 - [Regular Expression Usage](#regular-expression-usage)
 - [String and List Functions](#string-and-list-functions)
 - [Module and Library Usage](#module-and-library-usage)
+- [Executing Shell Commands](#executing-shell-commands)
 - [Virtual Environment Setup](#virtual-environment-setup)
 
 ## Recipes
@@ -112,6 +113,17 @@ Import a module and use its functionality.
 ```python
 import math
 print("Square root of 16 is", math.sqrt(16))
+
+```
+### Executing Shell Commands
+
+Run a shell command using subprocess.
+
+```python
+import subprocess
+result = subprocess.run(["echo", "Hello, World!"], capture_output=True, text=True)
+print("Command output:", result.stdout.strip())
+result2 = subprocess.run("<arbitrary shell command>", shell=True)
 
 ```
 ### Virtual Environment Setup
