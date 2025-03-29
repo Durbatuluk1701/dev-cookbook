@@ -1,0 +1,87 @@
+language: "Python"
+general_info: |
+  Python is a versatile, high-level language known for its readability and extensive standard library. It is widely used for web development, data analysis, automation, and more.
+installation: |
+  Download Python from https://python.org and install via the official installer. Use pip to manage additional packages. On Ubuntu 24.04, Python is usually pre-installed; you may need to install the venv module using:
+
+      sudo apt update
+      sudo apt install python3-venv
+dependencies: |
+  Python’s rich ecosystem includes packages like requests, numpy, and pandas. The standard library is also very comprehensive.
+build_system: |
+  Python projects are commonly managed with setuptools, pip, or poetry for packaging and dependency management.
+resources: |
+  - Official site: https://python.org
+  - PyPI: https://pypi.org
+recipes:
+  - name: "Input/Output Example"
+    description: "Prompt for input and print a greeting."
+    code_language: "python"
+    code: |
+      name = input("Enter your name: ")
+      print(f"Hello, {name}!")
+  - name: "Command Line Arguments"
+    description: "Access command line arguments using sys.argv."
+    code_language: "python"
+    code: |
+      import sys
+      for i, arg in enumerate(sys.argv):
+          print(f"Arg {i}: {arg}")
+  - name: "Command Line Arguments (argparse)"
+    description: "Utilize the argparse library for advanced command line argument parsing."
+    code_language: "python"
+    code: |
+      import argparse
+      parser = argparse.ArgumentParser(description="Description of executable.")
+      parser.add_argument("name", type=str, help="A string argument for variable 'name' based on position.")
+      parser.add_argument("--testarg", type=int, help="An integer argument parsable via '--testarg <int>' and accessible via 'args.testarg'.")
+      parser.add_argument('--mode', choices=['train', 'test'], help='A finite set of choices for the mode argument.')
+
+  - name: "Recursive Factorial"
+    description: "Calculate factorial recursively."
+    code_language: "python"
+    code: |
+      def factorial(n):
+          return 1 if n <= 1 else n * factorial(n - 1)
+      print("Factorial of 5 is", factorial(5))
+  - name: "Regular Expression Usage"
+    description: "Use the re module to extract a number from a string."
+    code_language: "python"
+    code: |
+      import re
+      text = "abc123def"
+      match = re.search(r"\d+", text)
+      if match:
+          print("Found number:", match.group())
+      else:
+          print("No match found")
+  - name: "String and List Functions"
+    description: "Manipulate strings and operate on lists."
+    code_language: "python"
+    code: |
+      upper = "hello".upper()
+      numbers = [1, 2, 3, 4]
+      total = sum(numbers)
+      print(f"Uppercase: {upper}, Sum: {total}")
+  - name: "Module and Library Usage"
+    description: "Import a module and use its functionality."
+    code_language: "python"
+    code: |
+      import math
+      print("Square root of 16 is", math.sqrt(16))
+  - name: "Virtual Environment Setup"
+    description: "Set up a Python virtual environment on Ubuntu 24.04 using the built-in venv module."
+    code_language: "bash"
+    code: |
+      # Update package lists and install python3-venv if not already installed
+      sudo apt update
+      sudo apt install python3-venv
+
+      # Create a virtual environment in the 'venv_dir' directory
+      python3 -m venv venv_dir
+
+      # Activate the virtual environment
+      source venv_dir/bin/activate
+
+      # Upgrade pip and install any required packages
+      pip install --upgrade pip

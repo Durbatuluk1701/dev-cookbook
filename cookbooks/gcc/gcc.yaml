@@ -1,0 +1,29 @@
+language: "gcc"
+general_info: |
+  GCC is the GNU Compiler Collection used for compiling C, C++, and other languages. It is highly configurable and supports multiple optimization and debugging options.
+installation: |
+  Install GCC via your system package manager (e.g., apt, yum) or download it from https://gcc.gnu.org.
+dependencies: |
+  Typically depends on system libraries. Additional libraries are specified via command-line flags.
+build_system: |
+  Often used with Makefiles or build systems like CMake.
+resources: |
+  - GCC Documentation: https://gcc.gnu.org/onlinedocs/
+recipes:
+  - name: "Compile a C Program"
+    description: "Compile a simple C program with debugging symbols."
+    code_language: "bash"
+    code: |
+      gcc -g -o program program.c
+  - name: "Compile with Optimization"
+    description: "Compile a C program with optimization flags for improved performance."
+    code_language: "bash"
+    code: |
+      gcc -O2 -o program program.c
+  - name: "Linking Multiple Files"
+    description: "Compile and link multiple C source files into a single executable."
+    code_language: "bash"
+    code: |
+      gcc -c file1.c
+      gcc -c file2.c
+      gcc -o program file1.o file2.o

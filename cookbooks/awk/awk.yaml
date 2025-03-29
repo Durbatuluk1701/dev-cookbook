@@ -1,0 +1,27 @@
+language: "AWK"
+general_info: |
+  AWK is a domain-specific language designed for text processing and data extraction. It excels at scanning and transforming text files, especially for reporting tasks.
+installation: |
+  AWK is typically pre-installed on Unix/Linux systems. GNU Awk (gawk) is recommended for additional features.
+dependencies: |
+  No external dependencies are required.
+build_system: |
+  Not applicable.
+resources: |
+  - GNU Awk Manual: https://www.gnu.org/software/gawk/manual/gawk.html
+recipes:
+  - name: "Basic AWK Print"
+    description: "Print the first field of each line in a file."
+    code_language: "bash"
+    code: |
+      awk '{print $1}' input.txt
+  - name: "Pattern Matching"
+    description: "Print lines where the second field is greater than 100."
+    code_language: "bash"
+    code: |
+      awk '$2 > 100 {print}' input.txt
+  - name: "Field Separator"
+    description: "Process a CSV file using a comma as the field separator."
+    code_language: "bash"
+    code: |
+      awk -F"," '{print $1, $2}' input.csv

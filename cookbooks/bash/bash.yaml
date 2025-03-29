@@ -1,0 +1,75 @@
+language: "Bash"
+general_info: |
+  Bash is a Unix shell and scripting language used to automate tasks in Linux and Unix environments. It excels at text manipulation, command chaining, and process control.
+installation: |
+  Bash is generally pre-installed on Linux and macOS. Windows users can use Git Bash or WSL.
+dependencies: |
+  Bash relies on core Unix utilities. For extended functionality, GNU versions may be preferred.
+build_system: |
+  Bash scripts do not require a build system; however, Make can be used to orchestrate script execution.
+resources: |
+  - Bash Reference Manual: https://www.gnu.org/software/bash/manual/
+  - Advanced Bash-Scripting Guide: https://tldp.org/LDP/abs/html/
+recipes:
+  - name: "Input/Output Example"
+    description: "Prompt the user for input and display a greeting."
+    code_language: "bash"
+    code: |
+      #!/bin/bash
+      read -p "Enter your name: " name
+      echo "Hello, $name!"
+  - name: "Command Line Arguments"
+    description: "Print the script name and all command line arguments."
+    code_language: "bash"
+    code: |
+      #!/bin/bash
+      echo "Script name: $0"
+      for arg in "$@"; do
+        echo "Argument: $arg"
+      done
+  - name: "Recursive Factorial"
+    description: "Calculate factorial recursively using a Bash function."
+    code_language: "bash"
+    code: |
+      #!/bin/bash
+      factorial() {
+          if [ "$1" -le 1 ]; then
+              echo 1
+          else
+              prev=$(factorial $(( $1 - 1 )))
+              echo $(( $1 * prev ))
+          fi
+      }
+      echo "Factorial of 5 is $(factorial 5)"
+  - name: "Regular Expression Usage"
+    description: "Use grep to search for a numeric pattern in a string."
+    code_language: "bash"
+    code: |
+      #!/bin/bash
+      text="abc123def"
+      if echo "$text" | grep -qE "[0-9]+"; then
+          echo "Found a number in the text"
+      else
+          echo "No number found"
+      fi
+  - name: "String and List Functions"
+    description: "Convert a string to uppercase and sum elements of an array."
+    code_language: "bash"
+    code: |
+      #!/bin/bash
+      text="hello"
+      upper=$(echo "$text" | tr '[:lower:]' '[:upper:]')
+      arr=(1 2 3 4)
+      sum=0
+      for i in "${arr[@]}"; do
+          sum=$((sum + i))
+      done
+      echo "Uppercase: $upper, Sum: $sum"
+  - name: "Module and Library Usage"
+    description: "Source another script to use its functions."
+    code_language: "bash"
+    code: |
+      #!/bin/bash
+      # Assume utils.sh contains: function greet() { echo "Hello from utils!"; }
+      source ./utils.sh
+      greet

@@ -1,0 +1,64 @@
+language: "OCaml"
+general_info: |
+  OCaml is a powerful, expressive functional language that also supports imperative and object-oriented programming. It is well-suited for rapid prototyping and production systems alike.
+installation: |
+  Install OCaml via OPAM, the OCaml Package Manager. Follow the instructions at https://ocaml.org/docs/up-and-running.
+dependencies: |
+  Use OPAM to manage libraries. Popular libraries include Core, Batteries, and Lwt for asynchronous programming.
+build_system: |
+  Dune is the recommended build system for OCaml. It simplifies project management, dependency resolution, and builds.
+resources: |
+  - Official site: https://ocaml.org
+  - Dune build system: https://dune.build
+  - OPAM package manager: https://opam.ocaml.org
+recipes:
+  - name: "Input/Output Example"
+    description: "Read a name from standard input and greet the user."
+    code_language: "ocaml"
+    code: |
+      let () =
+        print_string "Enter your name: ";
+        let name = read_line () in
+        Printf.printf "Hello, %s!\n" name
+  - name: "Command Line Arguments"
+    description: "Iterate over command line arguments using Sys.argv."
+    code_language: "ocaml"
+    code: |
+      let () =
+        Array.iteri (fun i arg -> Printf.printf "Arg %d: %s\n" i arg) Sys.argv
+  - name: "Recursive Factorial"
+    description: "Compute factorial recursively."
+    code_language: "ocaml"
+    code: |
+      let rec factorial n =
+        if n <= 1 then 1 else n * factorial (n - 1)
+      in
+      Printf.printf "Factorial of 5 is %d\n" (factorial 5)
+  - name: "Regular Expression Usage"
+    description: "Use the Str module for regex matching."
+    code_language: "ocaml"
+    code: |
+      #load "str.cma";;
+      let re = Str.regexp "[0-9]+" in
+      let test = "abc123def" in
+      if Str.string_match re test 0 then
+        Printf.printf "Found number: %s\n" (Str.matched_string test)
+      else
+        Printf.printf "No match found\n"
+  - name: "String and List Functions"
+    description: "Manipulate strings and perform list operations."
+    code_language: "ocaml"
+    code: |
+      let upper = String.uppercase_ascii "hello" in
+      let lst = [1; 2; 3; 4] in
+      let sum = List.fold_left (+) 0 lst in
+      Printf.printf "Uppercase: %s, Sum: %d\n" upper sum
+  - name: "Module and Library Usage"
+    description: "Define a module and use its function."
+    code_language: "ocaml"
+    code: |
+      module Math = struct
+        let square x = x * x
+      end
+      let () =
+        Printf.printf "Square of 3 is %d\n" (Math.square 3)

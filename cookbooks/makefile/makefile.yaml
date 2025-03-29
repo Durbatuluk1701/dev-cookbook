@@ -1,0 +1,40 @@
+language: "Makefile"
+general_info: |
+  Makefiles automate the build process for software projects. They define rules for compiling code, linking libraries, and running tests, making development more efficient.
+installation: |
+  Make is typically installed by default on Unix/Linux systems. Windows users can use GNU Make via Cygwin or MinGW.
+dependencies: |
+  Requires a POSIX-compliant shell environment.
+build_system: |
+  Make itself is the build system.
+resources: |
+  - GNU Make Manual: https://www.gnu.org/software/make/manual/make.html
+recipes:
+  - name: "Basic Build Rule"
+    description: "Compile a C program from multiple object files."
+    code_language: "makefile"
+    code: |
+      all: program
+
+      program: main.o utils.o
+      	gcc -o program main.o utils.o
+
+      main.o: main.c
+      	gcc -c main.c
+
+      utils.o: utils.c
+      	gcc -c utils.c
+
+      clean:
+      	rm -f *.o program
+  - name: "Phony Targets"
+    description: "Define phony targets for running and cleaning."
+    code_language: "makefile"
+    code: |
+      .PHONY: clean run
+
+      run: program
+      	./program
+
+      clean:
+      	rm -f *.o program

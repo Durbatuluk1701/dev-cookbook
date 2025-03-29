@@ -1,0 +1,27 @@
+language: "grep"
+general_info: |
+  Grep is a command-line utility that searches for patterns within text. It is optimized for speed and supports regular expressions for advanced searching.
+installation: |
+  Grep is typically pre-installed on Unix/Linux systems. GNU grep is commonly used.
+dependencies: |
+  No external dependencies.
+build_system: |
+  Not applicable.
+resources: |
+  - GNU grep manual: https://www.gnu.org/software/grep/manual/grep.html
+recipes:
+  - name: "Basic Search"
+    description: "Search for a specific pattern in a file."
+    code_language: "bash"
+    code: |
+      grep "pattern" file.txt
+  - name: "Recursive Search"
+    description: "Search for a pattern recursively in a directory."
+    code_language: "bash"
+    code: |
+      grep -r "pattern" /path/to/directory
+  - name: "Case-insensitive Search"
+    description: "Perform a case-insensitive search for a pattern."
+    code_language: "bash"
+    code: |
+      grep -i "pattern" file.txt

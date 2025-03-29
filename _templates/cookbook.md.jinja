@@ -1,0 +1,36 @@
+# {{ language }} Cookbook
+
+### General Information
+{{ general_info }}
+
+### Installation
+{{ installation }}
+
+### Dependencies
+{{ dependencies }}
+
+### Build System
+{{ build_system }}
+
+### Additional Resources
+{{ resources }}
+
+---
+
+## Table of Contents
+
+{% for recipe in recipes %}
+- [{{ recipe.name }}](#{{ recipe.name | markdown_safe_link }})
+{% endfor %}
+
+## Recipes
+
+{% for recipe in recipes %}
+### {{ recipe.name }}
+
+{{ recipe.description }}
+
+```{{ recipe.code_language }}
+{{ recipe.code }}
+```
+{% endfor %}

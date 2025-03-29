@@ -1,0 +1,27 @@
+language: "Sed"
+general_info: |
+  Sed is a stream editor used for filtering and transforming text in a pipeline. It is highly efficient for batch editing files or streams.
+installation: |
+  Sed is usually pre-installed on Unix/Linux systems. GNU sed is recommended for its extended features.
+dependencies: |
+  No external dependencies are needed.
+build_system: |
+  Not applicable – Sed scripts run directly in the shell.
+resources: |
+  - GNU sed manual: https://www.gnu.org/software/sed/manual/sed.html
+recipes:
+  - name: "Basic Substitution"
+    description: "Replace all occurrences of 'foo' with 'bar' in a file."
+    code_language: "bash"
+    code: |
+      sed 's/foo/bar/g' input.txt > output.txt
+  - name: "Delete Lines Matching Pattern"
+    description: "Delete lines that match a given pattern."
+    code_language: "bash"
+    code: |
+      sed '/pattern/d' input.txt
+  - name: "In-place Editing"
+    description: "Replace 'hello' with 'world' in the file without creating a new file."
+    code_language: "bash"
+    code: |
+      sed -i 's/hello/world/g' file.txt

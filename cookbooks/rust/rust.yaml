@@ -1,0 +1,80 @@
+language: "Rust"
+general_info: |
+  Rust is a modern systems programming language focused on safety, speed, and concurrency. Its strict compiler and powerful type system help prevent bugs at compile time.
+installation: |
+  Install Rust via rustup from https://rustup.rs. Cargo, the build and package manager, comes bundled with the installation.
+dependencies: |
+  Rust uses Cargo to manage dependencies. Popular crates include regex, serde, and tokio.
+build_system: |
+  Cargo serves as the build system, package manager, and test runner for Rust projects.
+resources: |
+  - Official site: https://www.rust-lang.org
+  - Cargo documentation: https://doc.rust-lang.org/cargo
+recipes:
+  - name: "Input/Output Example"
+    description: "Read input from the user and print a greeting."
+    code_language: "rust"
+    code: |
+      use std::io;
+      fn main() {
+          let mut input = String::new();
+          println!("Enter your name:");
+          io::stdin().read_line(&mut input).expect("Failed to read line");
+          println!("Hello, {}!", input.trim());
+      }
+  - name: "Command Line Arguments"
+    description: "Iterate over command line arguments using std::env."
+    code_language: "rust"
+    code: |
+      use std::env;
+      fn main() {
+          for (i, arg) in env::args().enumerate() {
+              println!("Arg {}: {}", i, arg);
+          }
+      }
+  - name: "Recursive Factorial"
+    description: "Define a recursive function to compute factorial."
+    code_language: "rust"
+    code: |
+      fn factorial(n: u64) -> u64 {
+          if n <= 1 { 1 } else { n * factorial(n - 1) }
+      }
+      fn main() {
+          println!("Factorial of 5 is {}", factorial(5));
+      }
+  - name: "Regular Expression Usage"
+    description: "Use the regex crate to find a number in a string."
+    code_language: "rust"
+    code: |
+      use regex::Regex;
+      fn main() {
+          let re = Regex::new(r"\d+").unwrap();
+          let text = "abc123def";
+          if let Some(mat) = re.find(text) {
+              println!("Found number: {}", mat.as_str());
+          } else {
+              println!("No match found");
+          }
+      }
+  - name: "String and List Functions"
+    description: "Convert a string to uppercase and sum the values of a vector."
+    code_language: "rust"
+    code: |
+      fn main() {
+          let upper = "hello".to_uppercase();
+          let numbers = vec![1, 2, 3, 4];
+          let sum: i32 = numbers.iter().sum();
+          println!("Uppercase: {}, Sum: {}", upper, sum);
+      }
+  - name: "Module and Library Usage"
+    description: "Define a module and call a function from it."
+    code_language: "rust"
+    code: |
+      mod math {
+          pub fn square(x: i32) -> i32 {
+              x * x
+          }
+      }
+      fn main() {
+          println!("Square of 3 is {}", math::square(3));
+      }
